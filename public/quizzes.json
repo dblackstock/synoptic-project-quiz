@@ -1,0 +1,22 @@
+[
+  {
+    "quiz_id": 1,
+    "quiz_name": "Physics Module 4: Atoms"
+  },
+  {
+    "quiz_id": 2,
+    "quiz_name": "Geography: Erosion"
+  },
+  {
+    "quiz_id": 3,
+    "quiz_name": "French: Être"
+  },
+  {
+    "quiz_id": 4,
+    "quiz_name": "Maths: Powers"
+  },
+  {
+    "quiz_id": 5,
+    "quiz_name": "Biology: Respiration"
+  }
+]

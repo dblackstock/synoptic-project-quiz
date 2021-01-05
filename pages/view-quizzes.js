@@ -1,11 +1,13 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import Nav from "../components/nav";
-import Footer from "../components/footer";
+import homeStyles from "../styles/Home.module.css";
+import quizStyles from "../styles/ViewQuizzes.module.css";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import retrieveQuizNamesAsButtons from "../functions/retrieveQuizNamesAsButtons";
 
 export default function ViewQuizzes() {
   return (
-    <div className={styles.container}>
+    <div className={homeStyles.container} data-testid="view-quiz-page">
       <Head>
         <title>QZ Quizzes</title>
         <link rel="icon" href="/favicon.ico" />
@@ -13,10 +15,7 @@ export default function ViewQuizzes() {
 
       <Nav />
 
-      <main className={styles.main}>
-        <h1>View Quizzes</h1>
-        <h2>Pick a quiz to view questions</h2>
-      </main>
+      <main className={quizStyles.quizwrap}>{retrieveQuizNamesAsButtons()}</main>
       <Footer />
     </div>
   );

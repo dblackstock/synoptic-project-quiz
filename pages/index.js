@@ -1,11 +1,11 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Nav from "../components/nav";
-import Footer from "../components/footer";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="home-page">
       <Head>
         <title>QZ Quizzes</title>
         <link rel="icon" href="/favicon.ico" />
