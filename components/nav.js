@@ -4,7 +4,6 @@ import Link from "next/link";
 import { UserProvider, useFetchUser } from "../utils/user";
 
 export default function Nav({ user, loading }) {
-  // const { user, loading } = useFetchUser();
   return (
     <div className={styles.wrapper}>
       <UserProvider value={{ user, loading }}>

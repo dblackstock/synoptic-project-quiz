@@ -30,3 +30,8 @@
   text-align: right;
   padding: 5px;
 }
+
+.loading {
+  padding-top: 20px;
+  padding-left: 20px;
+}
