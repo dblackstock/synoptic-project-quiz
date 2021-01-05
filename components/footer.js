@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div>
-        Q icon made by
+        Q icon made by{" "}
         <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
           Freepik
         </a>{" "}
