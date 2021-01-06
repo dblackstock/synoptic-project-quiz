@@ -1,22 +1,46 @@
 [
   {
-    "quiz_id": 1,
-    "quiz_name": "Physics Module 4: Atoms"
+    "quizId": 1,
+    "quizName": "Physics Module 4: Atoms",
+    "questions": [
+      {
+        "questionId": 123,
+        "questionNumber": 2,
+        "questionText": "Which subatomic particle has a positive charge?",
+        "answers": [
+          { "answerId": 12345, "answerText": "Neutron" },
+          { "answerId": 12346, "answerText": "Proton" },
+          { "answerId": 12347, "answerText": "Electron" },
+          { "answerId": 12348, "answerText": "Neutrino" }
+        ]
+      },
+      {
+        "questionId": 124,
+        "questionNumber": 1,
+        "questionText": "Which subatomic particle has the greatest mass?",
+        "answers": [
+          { "answerId": 22345, "answerText": "Neutron" },
+          { "answerId": 32346, "answerText": "Proton" },
+          { "answerId": 42347, "answerText": "Electron" },
+          { "answerId": 52348, "answerText": "Neutrino" }
+        ]
+      }
+    ]
   },
   {
-    "quiz_id": 2,
-    "quiz_name": "Geography: Erosion"
+    "quizId": 2,
+    "quizName": "Geography: Erosion"
   },
   {
-    "quiz_id": 3,
-    "quiz_name": "French: Être"
+    "quizId": 3,
+    "quizName": "French: Être"
   },
   {
-    "quiz_id": 4,
-    "quiz_name": "Maths: Powers"
+    "quizId": 4,
+    "quizName": "Maths: Powers"
   },
   {
-    "quiz_id": 5,
-    "quiz_name": "Biology: Respiration"
+    "quizId": 5,
+    "quizName": "Biology: Respiration"
   }
 ]

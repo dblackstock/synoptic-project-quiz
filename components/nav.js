@@ -18,7 +18,7 @@ export default function Nav({ user, loading }) {
           {user != null && loading === false ? (
             <div className={styles.itemlink}>
               <Link href="/view-quizzes" passHref={true}>
-                <a data-testid="view-quizzes">Quiz Questions</a>
+                <a data-testid="view-quizzes">View Quizzes</a>
               </Link>
             </div>
           ) : null}

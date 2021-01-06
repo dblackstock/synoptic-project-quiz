@@ -1,12 +1,19 @@
+// this is also testing the QuizButton component
+import { fireEvent, render } from "@testing-library/react";
 import retrieveQuizNamesAsButtons from "../functions/retrieveQuizNamesAsButtons";
-import data from "../public/quizzes.json";
+
+const handleClick = jest.fn();
 
 describe("Retrieve quiz names ", () => {
-  const result = retrieveQuizNamesAsButtons();
-  it("Retrieves first quiz name correctly", async () => {
-    expect(result[0].props.quizName).toBe("Physics Module 4: Atoms");
+  const buttons = retrieveQuizNamesAsButtons(handleClick);
+  it("Retrieves a quiz name correctly", async () => {
+    const { getByText } = await render(buttons);
+    expect(getByText(/Physics Module 4: Atoms/)).not.toBeNull();
   });
-  it("Retrieves last quiz name correctly", async () => {
-    expect(result[result.length - 1].props.quizName).toBe("Biology: Respiration");
+  it("runs function correctly on click", async () => {
+    const { getByText } = await render(buttons);
+    const result = fireEvent.click(getByText(/Physics Module 4: Atoms/));
+    expect(handleClick).toHaveBeenCalledTimes(1);
+    expect(handleClick).toHaveBeenCalledWith({ id: 1, title: "Physics Module 4: Atoms" });
   });
 });

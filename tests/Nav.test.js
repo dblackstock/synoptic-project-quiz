@@ -2,11 +2,11 @@ import { render } from "@testing-library/react";
 import Nav from "../components/Nav";
 
 describe("Navigation Bar when logged in", () => {
-  it("displays the Quiz Questions button", async () => {
+  it("displays the View Quizzes button", async () => {
     const { getByTestId } = await render(<Nav user={{ nickname: "davey" }} loading={false} />);
     const navItem = getByTestId("view-quizzes");
     expect(navItem).not.toBeNull;
-    expect(navItem.textContent).toEqual("Quiz Questions");
+    expect(navItem.textContent).toEqual("View Quizzes");
   });
   it("displays the Logout button", async () => {
     const { getByTestId } = await render(<Nav user={{ nickname: "davey" }} loading={false} />);
@@ -24,7 +24,7 @@ describe("Navigation Bar when logged in", () => {
     const navItem = queryByTestId("login");
     expect(navItem).toBeNull;
   });
-  it("does not display the Quiz Questions button if still loading", async () => {
+  it("does not display the View Quizzes button if still loading", async () => {
     const { queryByTestId } = await render(<Nav user={{ nickname: "davey" }} loading={true} />);
     const navItem = queryByTestId("view-quizzes");
     expect(navItem).toBeNull;
@@ -34,7 +34,7 @@ describe("Navigation Bar when logged in", () => {
     const navItem = getByTestId("home");
     expect(navItem.getAttribute("href")).toEqual("/");
   });
-  it("is set up to navigate to Quiz Questions page when Quiz Questions button is clicked", async () => {
+  it("is set up to navigate to View Quizzes page when View Quizzes button is clicked", async () => {
     const { getByTestId } = await render(<Nav user={{ nickname: "davey" }} loading={false} />);
     const navItem = getByTestId("view-quizzes");
     expect(navItem.getAttribute("href")).toEqual("/view-quizzes");
@@ -53,7 +53,7 @@ describe("Navigation Bar when logged out", () => {
     const navItem = queryByTestId("logout");
     expect(navItem).toBeNull;
   });
-  it("does not display the Quiz Questions button", async () => {
+  it("does not display the View Quizzes button", async () => {
     const { queryByTestId } = await render(<Nav />);
     const navItem = queryByTestId("view-quizzes");
     expect(navItem).toBeNull;

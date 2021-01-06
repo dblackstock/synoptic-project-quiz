@@ -1,7 +1,36 @@
-.quizwrap {
+/* for displaying all the quiz titles */
+.quiztitleswrap {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   height: 100%;
   width: 100%;
+}
+
+.quizquestionswrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.quiztitle {
+  width: 100%;
+  text-align: center;
+}
+
+#backbutton {
+  background-color: rgb(255, 237, 158);
+  border: 3px solid rgb(57, 144, 202);
+  text-align: center;
+  width: 20%;
+  align-self: flex-end;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#backbutton:active {
+  background-color: rgb(245, 218, 99);
 }
