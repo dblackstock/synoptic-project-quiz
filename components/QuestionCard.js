@@ -11,15 +11,17 @@ export default function QuestionCard({ data, getAnswer }) {
       <div className={styles.answerwrapper}>
         <h3 className={styles.answerheader}>Answers</h3>
         <ul className={styles.answerlist}>{displayAnswersAsListItems(data.answers)}</ul>
-        <div
-          className={viewStyles.button + " " + styles.answerbutton}
-          id={data.questionId}
-          onClick={() => {
-            displayAnswer(getAnswer, data.questionId);
-          }}
-        >
-          Display Answer
-        </div>
+        {getAnswer ? (
+          <div
+            className={viewStyles.button + " " + styles.answerbutton}
+            id={data.questionId}
+            onClick={() => {
+              displayAnswer(getAnswer, data.questionId);
+            }}
+          >
+            Display Answer
+          </div>
+        ) : null}
       </div>
     </div>
   );

@@ -14,6 +14,15 @@ import fetch from "isomorphic-unfetch";
 
 export default function ViewQuizzes({ quizzes }) {
   const { user, loading } = useFetchUser();
+
+  let answerViewPermission = false;
+  if (
+    user &&
+    (user["https://localhost:3000/permission"] === "edit" || user["https://localhost:3000/permission"] === "view")
+  ) {
+    answerViewPermission = true;
+  }
+
   const [quizSelectedId, setQuizSelectedId] = useState();
   const [quizTitle, setQuizTitle] = useState();
   const [quizQuestions, setQuizQuestions] = useState();
@@ -36,13 +45,6 @@ export default function ViewQuizzes({ quizzes }) {
       })();
     }
   }, [quizSelectedId]);
-
-  // useEffect(() => {
-  //   if (quizSelectedId) {
-  //     const questions = retrieveQuestionsForQuiz(quizSelectedId);
-  //     setQuizQuestions(questions);
-  //   }
-  // }, [quizSelectedId]);
 
   if (loading === true) {
     return <div className={homeStyles.loading}>Loading</div>;
@@ -69,7 +71,7 @@ export default function ViewQuizzes({ quizzes }) {
           >
             Back to Quiz List
           </div>
-          {displayQuestionsAsCards(quizQuestions, retrieveAnswerForQuestion)}
+          {displayQuestionsAsCards(quizQuestions, retrieveAnswerForQuestion, answerViewPermission)}
         </main>
       ) : (
         <main className={quizStyles.quiztitleswrap}>{displayQuizNamesAsButtons(quizzes, selectQuiz)}</main>

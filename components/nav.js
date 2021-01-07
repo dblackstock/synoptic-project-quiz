@@ -1,7 +1,7 @@
 // import React from 'react'
 import styles from "../styles/Nav.module.css";
 import Link from "next/link";
-import { UserProvider, useFetchUser } from "../utils/user";
+import { UserProvider } from "../utils/user";
 
 export default function Nav({ user, loading }) {
   let userPermission;
