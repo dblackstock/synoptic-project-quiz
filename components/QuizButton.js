@@ -9,6 +9,15 @@ export default function QuizButton(props) {
       }}
     >
       {props.quizName}
+      {props.deleteFunction ? (
+        <div
+          onClick={() => {
+            props.deleteFunction(props.quizId);
+          }}
+        >
+          🗑️
+        </div>
+      ) : null}
     </div>
   );
 }
