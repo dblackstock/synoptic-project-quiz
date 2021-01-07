@@ -74,7 +74,8 @@ describe("Selecting a quiz", () => {
     expect(questionInfo.textContent).toEqual("Some Question Text");
   });
 
-  // I had to comment these out after working on them for a couple of hours
+  // I had to comment these out after attempting to get them working for a couple of hours
+  // These tests work if they are executed before any other test involving clicking the quiz button - any subsequent tests fail.
   // It seems that I am not resetting the state correctly between tests
   // This error began to occur once I had brought in async functionality for retrieveQuestionsForQuiz()
 

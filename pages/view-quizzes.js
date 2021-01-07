@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import displayQuizNamesAsButtons from "../functions/displayQuizNamesAsButtons";
 import displayQuestionsAsCards from "../functions/displayQuestionsAsCards";
 import retrieveQuestionsForQuiz from "../functions/retrieveQuestionsForQuiz";
+import retrieveAnswerForQuestion from "../functions/retrieveAnswerForQuestion";
 import Router from "next/router";
 import { useFetchUser } from "../utils/user";
 import fetch from "isomorphic-unfetch";
@@ -61,10 +62,14 @@ export default function ViewQuizzes({ quizzes }) {
       {quizQuestions ? (
         <main className={quizStyles.quizquestionswrap}>
           <h1 className={quizStyles.quiztitle}>{quizTitle}</h1>
-          <div data-testid="back-button" id={quizStyles.backbutton} onClick={clearQuiz}>
+          <div
+            data-testid="back-button"
+            className={quizStyles.backbutton + " " + quizStyles.button}
+            onClick={clearQuiz}
+          >
             Back to Quiz List
           </div>
-          {displayQuestionsAsCards(quizQuestions)}
+          {displayQuestionsAsCards(quizQuestions, retrieveAnswerForQuestion)}
         </main>
       ) : (
         <main className={quizStyles.quiztitleswrap}>{displayQuizNamesAsButtons(quizzes, selectQuiz)}</main>

@@ -22,4 +22,10 @@ describe("display questions as question cards", () => {
     const answer = getAllByText(/Proton/)[0];
     expect(answer.textContent).toEqual(expect.stringMatching(/^[A-E]\./));
   });
+  it("displays an answer button", async () => {
+    const { getAllByText } = await render(displayQuestionsAsCards(questions));
+    const answer = getAllByText(/Display Answer/)[0];
+    expect(answer).not.toBeNull();
+  });
+  // There should be a test here about clicking the Display Answer button but I've not included it due to lack of time
 });

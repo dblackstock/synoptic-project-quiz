@@ -21,16 +21,21 @@
   text-align: center;
 }
 
-#backbutton {
+.button {
   background-color: rgb(255, 237, 158);
   border: 3px solid rgb(57, 144, 202);
   text-align: center;
-  width: 20%;
-  align-self: flex-end;
   cursor: pointer;
   border-radius: 5px;
 }
 
-#backbutton:active {
+.button:active {
   background-color: rgb(245, 218, 99);
+}
+
+.backbutton {
+  width: 20%;
+  align-self: flex-end;
+  cursor: pointer;
+  border-radius: 5px;
 }
