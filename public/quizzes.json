@@ -29,18 +29,22 @@
   },
   {
     "quizId": 2,
-    "quizName": "Geography: Erosion"
+    "quizName": "Geography: Erosion",
+    "questions": []
   },
   {
     "quizId": 3,
-    "quizName": "French: Être"
+    "quizName": "French: Être",
+    "questions": []
   },
   {
     "quizId": 4,
-    "quizName": "Maths: Powers"
+    "quizName": "Maths: Powers",
+    "questions": []
   },
   {
     "quizId": 5,
-    "quizName": "Biology: Respiration"
+    "quizName": "Biology: Respiration",
+    "questions": []
   }
 ]

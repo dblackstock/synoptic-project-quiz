@@ -1,12 +1,13 @@
 // this is also testing the QuizButton component
 import { fireEvent, render } from "@testing-library/react";
-import retrieveQuizNamesAsButtons from "../functions/retrieveQuizNamesAsButtons";
+import displayQuizNamesAsButtons from "../functions/displayQuizNamesAsButtons";
+import quizzes from "../public/quizzes.json";
 
 const handleClick = jest.fn();
 
-describe("Retrieve quiz names ", () => {
-  const buttons = retrieveQuizNamesAsButtons(handleClick);
-  it("Retrieves a quiz name correctly", async () => {
+describe("Display quiz names ", () => {
+  const buttons = displayQuizNamesAsButtons(quizzes, handleClick);
+  it("Displays a quiz name correctly", async () => {
     const { getByText } = await render(buttons);
     expect(getByText(/Physics Module 4: Atoms/)).not.toBeNull();
   });

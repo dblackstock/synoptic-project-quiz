@@ -4,13 +4,14 @@ import homeStyles from "../styles/Home.module.css";
 import quizStyles from "../styles/ViewQuizzes.module.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
-import retrieveQuizNamesAsButtons from "../functions/retrieveQuizNamesAsButtons";
+import displayQuizNamesAsButtons from "../functions/displayQuizNamesAsButtons";
 import displayQuestionsAsCards from "../functions/displayQuestionsAsCards";
 import retrieveQuestionsForQuiz from "../functions/retrieveQuestionsForQuiz";
 import Router from "next/router";
 import { useFetchUser } from "../utils/user";
+import fetch from "isomorphic-unfetch";
 
-export default function ViewQuizzes() {
+export default function ViewQuizzes({ quizzes }) {
   const { user, loading } = useFetchUser();
   const [quizSelectedId, setQuizSelectedId] = useState();
   const [quizTitle, setQuizTitle] = useState();
@@ -28,9 +29,19 @@ export default function ViewQuizzes() {
 
   useEffect(() => {
     if (quizSelectedId) {
-      setQuizQuestions(retrieveQuestionsForQuiz(quizSelectedId));
+      (async () => {
+        const questions = await retrieveQuestionsForQuiz(quizSelectedId);
+        setQuizQuestions(questions);
+      })();
     }
   }, [quizSelectedId]);
+
+  // useEffect(() => {
+  //   if (quizSelectedId) {
+  //     const questions = retrieveQuestionsForQuiz(quizSelectedId);
+  //     setQuizQuestions(questions);
+  //   }
+  // }, [quizSelectedId]);
 
   if (loading === true) {
     return <div className={homeStyles.loading}>Loading</div>;
@@ -56,9 +67,15 @@ export default function ViewQuizzes() {
           {displayQuestionsAsCards(quizQuestions)}
         </main>
       ) : (
-        <main className={quizStyles.quiztitleswrap}>{retrieveQuizNamesAsButtons(selectQuiz)}</main>
+        <main className={quizStyles.quiztitleswrap}>{displayQuizNamesAsButtons(quizzes, selectQuiz)}</main>
       )}
       <Footer />
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const resultsList = await fetch("http://localhost:3000/api/get-quizzes");
+  const formattedResults = await resultsList.json();
+  return { props: { quizzes: formattedResults } };
 }

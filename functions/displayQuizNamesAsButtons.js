@@ -1,9 +1,8 @@
-import data from "../public/quizzes.json";
 import QuizButton from "../components/QuizButton";
 
-export default function retrieveQuizNamesAsButtons(setQuizIdAndTitle) {
+export default function displayQuizNamesAsButtons(quizzes, setQuizIdAndTitle) {
   const quizNames = [];
-  data.forEach((element) => {
+  quizzes.forEach((element) => {
     quizNames.push(
       <QuizButton quizName={element.quizName} quizId={element.quizId} onClickFunction={setQuizIdAndTitle}></QuizButton>
     );
