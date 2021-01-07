@@ -68,7 +68,6 @@ export default function QuizEditor({ quizzes }) {
         {deletingQuiz ? (
           <ConfirmModal
             confirmFunction={() => {
-              console.log(quizSelectedId);
               deleteQuiz(quizSelectedId);
             }}
             cancelFunction={setDeletingQuiz}
