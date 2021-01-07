@@ -1,0 +1,36 @@
+.modalwrapper {
+  background-color: rgba(156, 161, 148, 0.466);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.querybox {
+  background-color: rgb(255, 255, 255);
+  border: 5px solid rgb(119, 119, 119);
+  border-radius: 10px;
+  align-self: center;
+  padding: 10px;
+}
+
+.buttonset {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.confirmbutton {
+  background-color: rgb(82, 247, 90);
+  width: 40%;
+}
+
+.cancelbutton {
+  background-color: rgb(230, 227, 227);
+  width: 40%;
+}
+
+.newname {
+  margin-left: 5px;
+}
