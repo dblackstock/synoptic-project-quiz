@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import Nav from "../components/Nav";
 
-describe("Navigation Bar when logged in", () => {
+describe("Navigation Bar when logged in with no permissions", () => {
   it("displays the View Quizzes button", async () => {
     const { getByTestId } = await render(<Nav user={{ nickname: "davey" }} loading={false} />);
     const navItem = getByTestId("view-quizzes");
@@ -38,6 +38,30 @@ describe("Navigation Bar when logged in", () => {
     const { getByTestId } = await render(<Nav user={{ nickname: "davey" }} loading={false} />);
     const navItem = getByTestId("view-quizzes");
     expect(navItem.getAttribute("href")).toEqual("/view-quizzes");
+  });
+});
+
+describe("Navigation Bar when logged in with varying permissions", () => {
+  it("does not display the Quiz Editor button when permission: restricted", async () => {
+    const { queryByTestId } = await render(
+      <Nav user={{ nickname: "davey", "https://localhost:3000/permission": "restricted" }} loading={false} />
+    );
+    const navItem = queryByTestId("quiz-editor");
+    expect(navItem).toBeNull;
+  });
+  it("does not display the Quiz Editor button when permission: view", async () => {
+    const { queryByTestId } = await render(
+      <Nav user={{ nickname: "davey", "https://localhost:3000/permission": "view" }} loading={false} />
+    );
+    const navItem = queryByTestId("quiz-editor");
+    expect(navItem).toBeNull;
+  });
+  it("displays the Quiz Editor button when permission: edit", async () => {
+    const { getByTestId } = await render(
+      <Nav user={{ nickname: "davey", "https://localhost:3000/permission": "edit" }} loading={false} />
+    );
+    const navItem = getByTestId("quiz-editor");
+    expect(navItem).not.toBeNull;
   });
 });
 
