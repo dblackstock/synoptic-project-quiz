@@ -16,11 +16,18 @@ export default function Nav({ user, loading }) {
             </Link>
           </div>
           {user != null && loading === false ? (
-            <div className={styles.itemlink}>
-              <Link href="/view-quizzes" passHref={true}>
-                <a data-testid="view-quizzes">View Quizzes</a>
-              </Link>
-            </div>
+            <>
+              <div className={styles.itemlink}>
+                <Link href="/view-quizzes" passHref={true}>
+                  <a data-testid="view-quizzes">View Quizzes</a>
+                </Link>
+              </div>
+              <div className={styles.itemlink}>
+                <Link href="/quiz-editor" passHref={true}>
+                  <a data-testid="quiz-editor">Quiz Editor</a>
+                </Link>
+              </div>
+            </>
           ) : null}
         </div>
         <div className={styles.useritems}>
