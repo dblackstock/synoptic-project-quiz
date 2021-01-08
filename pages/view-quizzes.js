@@ -8,6 +8,7 @@ import displayQuizNamesAsButtons from "../functions/displayQuizNamesAsButtons";
 import displayQuestionsAsCards from "../functions/displayQuestionsAsCards";
 import retrieveQuestionsForQuiz from "../functions/retrieveQuestionsForQuiz";
 import retrieveAnswerForQuestion from "../functions/retrieveAnswerForQuestion";
+import QuestionCard from "../components/QuestionCard";
 import Router from "next/router";
 import { useFetchUser } from "../utils/user";
 import fetch from "isomorphic-unfetch";
@@ -55,7 +56,7 @@ export default function ViewQuizzes({ quizzes }) {
   return (
     <div className={homeStyles.container} data-testid="view-quiz-page">
       <Head>
-        <title>QZ Quizzes</title>
+        <title>Quizzes - QZ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -71,7 +72,7 @@ export default function ViewQuizzes({ quizzes }) {
           >
             Back to Quiz List
           </div>
-          {displayQuestionsAsCards(quizQuestions, retrieveAnswerForQuestion, answerViewPermission)}
+          {displayQuestionsAsCards(quizQuestions, QuestionCard, retrieveAnswerForQuestion, answerViewPermission)}
         </main>
       ) : (
         <main className={quizStyles.quiztitleswrap}>{displayQuizNamesAsButtons(quizzes, selectQuiz)}</main>

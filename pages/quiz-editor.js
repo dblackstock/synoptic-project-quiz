@@ -6,28 +6,45 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { useFetchUser } from "../utils/user";
 import displayQuizNamesAsButtons from "../functions/displayQuizNamesAsButtons";
+import retrieveQuestionsForEditing from "../functions/retrieveQuestionsForEditing";
 import quizStyles from "../styles/ViewQuizzes.module.css";
 import editorStyles from "../styles/QuizEditor.module.css";
 import homeStyles from "../styles/Home.module.css";
 import ConfirmModal from "../components/ConfirmModal";
 import saveQuiz from "../functions/saveQuiz";
 import deleteQuiz from "../functions/deleteQuiz";
+import Editor from "../components/Editor";
 
 export default function QuizEditor({ quizzes }) {
   const [quizSelectedId, setQuizSelectedId] = useState();
   const [quizTitle, setQuizTitle] = useState();
   const [addingQuiz, setAddingQuiz] = useState();
   const [deletingQuiz, setDeletingQuiz] = useState();
+  const [quizQuestions, setQuizQuestions] = useState();
 
   const selectQuiz = ({ id, title }) => {
-    setQuizSelectedId(id);
     setQuizTitle(title);
+    setQuizSelectedId(id);
+  };
+
+  const clearQuiz = () => {
+    selectQuiz({ id: null, title: null });
+    setQuizQuestions(null);
   };
 
   const openQuizModal = (quizId) => {
     setDeletingQuiz(true);
     setQuizSelectedId(quizId);
   };
+
+  useEffect(() => {
+    if (quizSelectedId && quizTitle) {
+      (async () => {
+        const questions = await retrieveQuestionsForEditing(quizSelectedId);
+        setQuizQuestions(questions);
+      })();
+    }
+  }, [quizTitle]);
 
   const { user, loading } = useFetchUser();
   if (loading === true) {
@@ -39,43 +56,55 @@ export default function QuizEditor({ quizzes }) {
   return (
     <div className={styles.container} data-testid="home-page">
       <Head>
-        <title>QZ Quizzes</title>
+        <title>Edit Quiz - QZ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Nav user={user} loading={loading} />
-      <main className={quizStyles.quiztitleswrap}>
-        {displayQuizNamesAsButtons(quizzes, selectQuiz, openQuizModal)}
-        <div
-          className={quizStyles.button + " " + editorStyles.addButton}
-          onClick={() => {
-            setAddingQuiz(true);
-          }}
-        >
-          Add a New Quiz
-        </div>
-        {addingQuiz ? (
-          <ConfirmModal
-            confirmFunction={() => {
-              saveQuiz(document.getElementById("saveinput").value);
-            }}
-            cancelFunction={setAddingQuiz}
-            headerText="Create a new quiz"
-            addingQuiz={true}
-            confirmButtonText="Create"
+      {quizQuestions ? (
+        <main>
+          <Editor
+            questions={quizQuestions}
+            setQuestions={setQuizQuestions}
+            title={quizTitle}
+            quizId={quizSelectedId}
+            clearQuiz={clearQuiz}
           />
-        ) : null}
-        {deletingQuiz ? (
-          <ConfirmModal
-            confirmFunction={() => {
-              deleteQuiz(quizSelectedId);
+        </main>
+      ) : (
+        <main className={quizStyles.quiztitleswrap}>
+          {displayQuizNamesAsButtons(quizzes, selectQuiz, openQuizModal)}
+          <div
+            className={quizStyles.button + " " + editorStyles.addButton}
+            onClick={() => {
+              setAddingQuiz(true);
             }}
-            cancelFunction={setDeletingQuiz}
-            headerText="Delete this quiz?"
-            confirmButtonText="Delete"
-          />
-        ) : null}
-      </main>
+          >
+            Add a New Quiz
+          </div>
+          {addingQuiz ? (
+            <ConfirmModal
+              confirmFunction={() => {
+                saveQuiz(document.getElementById("saveinput").value);
+              }}
+              cancelFunction={setAddingQuiz}
+              headerText="Create a new quiz"
+              addingQuiz={true}
+              confirmButtonText="Create"
+            />
+          ) : null}
+          {deletingQuiz ? (
+            <ConfirmModal
+              confirmFunction={() => {
+                deleteQuiz(quizSelectedId);
+              }}
+              cancelFunction={setDeletingQuiz}
+              headerText="Delete this quiz?"
+              confirmButtonText="Delete"
+            />
+          ) : null}
+        </main>
+      )}
       <Footer />
     </div>
   );
