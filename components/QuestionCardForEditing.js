@@ -30,7 +30,7 @@ export default function QuestionCardForEditing({ data, questions, setQuestions, 
       <div className={styles.answerwrapper}>
         <h3 className={styles.answerheader}>Answers</h3>
         <ul className={styles.answerlist}>{displayAnswersAsListItems(data.answers)}</ul>
-        <div>
+        <div className={editStyles.buttonwrap}>
           <div
             className={viewStyles.button + " " + editStyles.savebutton}
             onClick={() => {

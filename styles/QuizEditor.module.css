@@ -1,6 +1,10 @@
-.addButton {
+.addbutton {
   align-self: center;
   width: 20%;
   margin-left: 30%;
   margin-right: 30%;
+}
+
+.editpagewrap {
+  width: 100%;
 }

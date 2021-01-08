@@ -13,6 +13,7 @@ import homeStyles from "../styles/Home.module.css";
 import ConfirmModal from "../components/ConfirmModal";
 import saveQuiz from "../functions/saveQuiz";
 import deleteQuiz from "../functions/deleteQuiz";
+import createQuestion from "../functions/createQuestion";
 import Editor from "../components/Editor";
 
 export default function QuizEditor({ quizzes }) {
@@ -20,6 +21,7 @@ export default function QuizEditor({ quizzes }) {
   const [quizTitle, setQuizTitle] = useState();
   const [addingQuiz, setAddingQuiz] = useState();
   const [deletingQuiz, setDeletingQuiz] = useState();
+  const [addingQuestion, setAddingQuestion] = useState();
   const [quizQuestions, setQuizQuestions] = useState();
 
   const selectQuiz = ({ id, title }) => {
@@ -62,20 +64,37 @@ export default function QuizEditor({ quizzes }) {
 
       <Nav user={user} loading={loading} />
       {quizQuestions ? (
-        <main>
+        <main className={editorStyles.editpagewrap}>
+          {addingQuestion ? (
+            <ConfirmModal
+              confirmFunction={() => {
+                createQuestion({
+                  questions: quizQuestions,
+                  quizId: quizSelectedId,
+                  setQuestions: setQuizQuestions,
+                });
+              }}
+              cancelFunction={setAddingQuestion}
+              headerText="Create a new question"
+              addingQuestion={true}
+              confirmButtonText="Create"
+              numberOfQuestions={quizQuestions.length}
+            />
+          ) : null}
           <Editor
             questions={quizQuestions}
             setQuestions={setQuizQuestions}
             title={quizTitle}
             quizId={quizSelectedId}
             clearQuiz={clearQuiz}
+            setAddingQuestion={setAddingQuestion}
           />
         </main>
       ) : (
         <main className={quizStyles.quiztitleswrap}>
           {displayQuizNamesAsButtons(quizzes, selectQuiz, openQuizModal)}
           <div
-            className={quizStyles.button + " " + editorStyles.addButton}
+            className={quizStyles.button + " " + editorStyles.addbutton}
             onClick={() => {
               setAddingQuiz(true);
             }}

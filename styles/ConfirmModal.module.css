@@ -10,6 +10,7 @@
 .querybox {
   background-color: rgb(255, 255, 255);
   border: 5px solid rgb(119, 119, 119);
+  width: 40%;
   border-radius: 10px;
   align-self: center;
   padding: 10px;
@@ -31,6 +32,16 @@
   width: 40%;
 }
 
-.newname {
+.input {
   margin-left: 5px;
+  width: 100%;
+}
+.input {
+  width: 60%;
+}
+
+.addquestionwrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
 }
