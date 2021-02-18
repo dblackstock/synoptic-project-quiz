@@ -6,7 +6,6 @@ export default async function (req, res) {
     .collection("quizzes")
     .find({ quizId: parseInt(req.body, 10) })
     .project({
-      questions: 1,
       "questions.questionId": 1,
       "questions.questionNumber": 1,
       "questions.questionText": 1,
